@@ -1,0 +1,34 @@
+{
+  "menu": [
+    {
+      "url": "/",
+      "name": "Home",
+      "icon": "menu-icon tf-icons ti ti-smart-home",
+      "slug": "pages-home"
+    },
+    {
+      "url": "page-2",
+      "icon": "menu-icon tf-icons ti ti-list-check",
+      "name": "Denúncias",
+      "slug": "pages-page-2"
+    },
+    {
+      "url": "page-2",
+      "icon": "menu-icon tf-icons ti ti-file-type-pdf",
+      "name": "Relatórios",
+      "slug": "pages-page-2"
+    },
+    {
+      "url": "page-2",
+      "icon": "menu-icon tf-icons ti ti-user",
+      "name": "Usuários",
+      "slug": "pages-page-2"
+    },
+    {
+      "url": "page-2",
+      "icon": "menu-icon tf-icons ti ti-settings",
+      "name": "Configurações",
+      "slug": "pages-page-2"
+    }
+  ]
+}
