@@ -7,7 +7,8 @@ use App\Http\Controllers\pages\Page2;
 use App\Http\Controllers\pages\MiscError;
 use App\Http\Controllers\authentications\LoginBasic;
 use App\Http\Controllers\authentications\RegisterBasic;
-
+use App\Livewire\ReportType\View as ReportTypeView;
+use App\Livewire\ReportType\Form as ReportTypeForm;
 
 // authentication
 Route::get('/auth/login-basic', [LoginBasic::class, 'index'])->name('auth-login-basic');
@@ -26,4 +27,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
   // locale
   Route::get('/lang/{locale}', [LanguageController::class, 'swap']);
   Route::get('/pages/misc-error', [MiscError::class, 'index'])->name('pages-misc-error');
+
+  Route::get('/reportType', ReportTypeView::class)->name('reportTypeView');
+  Route::get('/reportType/{id?}', ReportTypeForm::class)->name('reportTypeForm');
 });

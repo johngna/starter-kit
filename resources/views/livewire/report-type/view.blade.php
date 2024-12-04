@@ -9,7 +9,7 @@
           <i class="mb-4 text-heading ti ti-{{$type->icon ?? 'category'}} ti-32px"></i>
           <h5>{{$type->name}}</h5>
           <p> {{$type->description}}</p>
-          <a href="#" class="btn btn-primary"> Editar
+          <a href="{{route('reportTypeForm', $type->id)}}" class="btn btn-primary"> Editar
           </a>
         </div>
       </div>
