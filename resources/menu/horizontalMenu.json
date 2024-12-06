@@ -28,7 +28,15 @@
       "url": "page-2",
       "icon": "menu-icon tf-icons ti ti-settings",
       "name": "Configurações",
-      "slug": "pages-page-2"
+      "slug": "pages-page-2",
+      "submenu": [
+        {
+          "url": "/reportType",
+          "name": "Categorias de Denúncias",
+          "slug": "pages-report-types"
+        }
+
+      ]
     }
   ]
 }

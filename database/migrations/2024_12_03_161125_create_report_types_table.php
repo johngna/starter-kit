@@ -16,6 +16,8 @@ return new class extends Migration
       $table->string('name'); // Nome do tipo de denúncia
       $table->text('description')->nullable(); // Descrição do tipo de denúncia
       $table->string('icon')->nullable(); // Ícone do tipo de denúncia
+      $table->boolean('active')->default(true); // Tipo de denúncia ativo
+      $table->softDeletes();
       $table->timestamps();
     });
   }

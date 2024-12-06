@@ -47,6 +47,8 @@ $contentLayout = (isset($container) ? (($container === 'container-xxl') ? "layou
 
 <body>
 
+  @include('layouts.sections.toast')
+
   <!-- Layout Content -->
   @yield('layoutContent')
   <!--/ Layout Content -->

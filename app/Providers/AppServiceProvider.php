@@ -2,8 +2,11 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
+use Livewire\Attributes\On;
 use Illuminate\Support\Facades\Vite;
+use Illuminate\Support\ServiceProvider;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,5 +32,11 @@ class AppServiceProvider extends ServiceProvider
       }
       return [];
     });
+
+
+
+
+
+
   }
 }
