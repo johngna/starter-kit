@@ -11,4 +11,10 @@ class ReportType extends Model
 
   protected $table = 'report_types';
   protected $guarded = [];
+
+
+  public function customFields()
+  {
+    return $this->hasMany(CustomField::class);
+  }
 }

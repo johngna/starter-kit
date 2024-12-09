@@ -63,7 +63,7 @@ $containerNav = ($configData['contentLayout'] === 'compact') ? 'container-xxl' :
             @endif
 
             @yield('content')
-            {{ $slot }}
+            {{ $slot ?? '' }}
 
           </div>
           <!-- / Content -->

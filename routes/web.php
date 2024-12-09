@@ -7,6 +7,7 @@ use App\Http\Controllers\pages\Page2;
 use App\Http\Controllers\pages\MiscError;
 use App\Http\Controllers\authentications\LoginBasic;
 use App\Http\Controllers\authentications\RegisterBasic;
+use App\Livewire\Report\Form;
 use App\Livewire\ReportType\View as ReportTypeView;
 use App\Livewire\ReportType\Form as ReportTypeForm;
 
@@ -30,4 +31,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 
   Route::get('/reportType', ReportTypeView::class)->name('reportTypeView');
   Route::get('/reportType/{id?}', ReportTypeForm::class)->name('reportTypeForm');
+
+  Route::get('/report/{type?}', Form::class)->name('reportForm');
 });

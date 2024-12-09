@@ -42,8 +42,6 @@ class Form extends Component
         }
       }
     }
-
-
   }
 
 
@@ -66,8 +64,6 @@ class Form extends Component
     } else {
       $this->create();
     }
-
-
   }
 
   public function create()
@@ -77,14 +73,15 @@ class Form extends Component
       'description' => 'required'
     ]);
 
-    ReportType::create([
+    $report = ReportType::create([
       'name' => $this->name,
       'icon' => $this->icon,
       'description' => $this->description
     ]);
 
+    $this->reportId = $report->id;
+
     $this->dispatch('toast', ['message' => 'Tipo de relatório incluído com sucesso!', 'title' => 'sucesso']);
-    $this->reset();
   }
 
   public function update()
@@ -105,6 +102,17 @@ class Form extends Component
     $this->dispatch('toast', ['message' => 'Tipo de relatório atualizado com sucesso!', 'title' => 'sucesso']);
   }
 
+  #[On('removeReport')]
+  public function removeReport($id)
+  {
 
 
+    $reportType = ReportType::find($id);
+
+    if ($reportType) {
+      $reportType->delete();
+      $this->dispatch('toast', ['message' => 'Tipo de relatório removido com sucesso!', 'title' => 'sucesso']);
+      return redirect()->route('reportTypeView');
+    }
+  }
 }
