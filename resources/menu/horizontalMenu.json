@@ -22,7 +22,27 @@
       "url": "page-2",
       "icon": "menu-icon tf-icons ti ti-user",
       "name": "Usuários",
-      "slug": "pages-page-2"
+      "slug": "pages-page-2",
+      "submenu": [
+        {
+          "url": "acl/roles",
+          "name": "Roles",
+          "icon": "shield",
+          "slug": "acl-roles"
+        },
+        {
+          "url": "acl/permissions",
+          "name": "Permissions",
+          "icon": "lock",
+          "slug": "acl-permissions"
+        },
+        {
+          "url": "acl/user-roles",
+          "name": "User Roles",
+          "icon": "users",
+          "slug": "acl-user-roles"
+        }
+      ]
     },
     {
       "url": "page-2",
