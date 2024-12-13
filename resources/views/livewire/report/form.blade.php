@@ -9,21 +9,6 @@
         <h5 class="">Identificação</h5>
         <div class="">
           <div class="row">
-            <div class="col-md mb-md-0 mb-5">
-              <div class="form-check custom-option custom-option-basic">
-                <label class="form-check-label custom-option-content" for="customRadioTemp1">
-                  <input name="customRadioTemp" class="form-check-input" type="radio" value="false"
-                    id="customRadioTemp1" wire:model.live="is_anonymous" />
-                  <span class="custom-option-header">
-                    <span class="h6 mb-0">Identificado</span>
-                    {{-- <small class="text-muted">Free</small> --}}
-                  </span>
-                  <span class="custom-option-body">
-                    <small>Denúncia identificada</small>
-                  </span>
-                </label>
-              </div>
-            </div>
             <div class="col-md">
               <div class="form-check custom-option custom-option-basic">
                 <label class="form-check-label custom-option-content" for="customRadioTemp2">
@@ -39,6 +24,22 @@
                 </label>
               </div>
             </div>
+            <div class="col-md mb-md-0 mb-5">
+              <div class="form-check custom-option custom-option-basic">
+                <label class="form-check-label custom-option-content" for="customRadioTemp1">
+                  <input name="customRadioTemp" class="form-check-input" type="radio" value="false"
+                    id="customRadioTemp1" wire:model.live="is_anonymous" />
+                  <span class="custom-option-header">
+                    <span class="h6 mb-0">Identificado</span>
+                    {{-- <small class="text-muted">Free</small> --}}
+                  </span>
+                  <span class="custom-option-body">
+                    <small>Denúncia identificada</small>
+                  </span>
+                </label>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -46,13 +47,13 @@
         @if($is_anonymous == 'false')
 
         <div class="d-grid gap-3 p-2">
-          <x-input label="Nome" name="Nome" placeholder="Nome do denunciante" wire:model="reported_by" />
+          <x-input label="Nome" name="reported_by" placeholder="Nome do denunciante" wire:model="reported_by" />
           <div class="row">
             <div class="col-md-6">
-              <x-input label="Email" name="Email" type="email" placeholder="Email do denunciante" wire:model="email" />
+              <x-input label="Email" name="email" type="email" placeholder="Email do denunciante" wire:model="email" />
             </div>
             <div class="col-md-6">
-              <x-input label="Telefone" name="Telefone" placeholder="Telefone do denunciante" wire:model="contact" />
+              <x-input label="Telefone" name="contact" placeholder="Telefone do denunciante" wire:model="contact" />
             </div>
           </div>
         </div>
@@ -95,10 +96,10 @@
 
         <div class="row">
           <div class="col-md-6">
-            <x-input label="Local" name="Local" placeholder="Local da denúncia" wire:model="location" />
+            <x-input label="Local" name="location" placeholder="Local da denúncia" wire:model="location" />
           </div>
           <div class="col-md-6">
-            <x-input label="Data/Hora" name="Data" type="datetime-local" placeholder="Data da denúncia" wire:model="date" />
+            <x-input label="Data/Hora" name="date" type="datetime-local" placeholder="Data da denúncia" wire:model="date" />
           </div>
         </div>
 
@@ -112,6 +113,10 @@
           :value="$custom_fields_values[$field->id] ?? null" />
 
         @endforeach
+
+
+        @include('components.reports.fields.attachments')
+
 
         <div class="d-flex justify-content-between">
           <button type="button" class="btn btn-secondary" wire:click="previousStep">Anterior</button>
@@ -244,6 +249,32 @@
                                           </small>
                                       </div>
                                   </div>
+
+                                  <h6 class="fw-bold mt-4 mb-3">
+                                      <i data-feather="paperclip" class="me-2"></i>
+                                      Anexos
+                                  </h6>
+
+                                  @if(count($attachments) > 0)
+                                      <div class="attached-files">
+                                          @foreach($attachments as $index => $attachment)
+                                              <div class="attached-file d-flex align-items-center p-2 border rounded mb-2">
+                                                  <i class="fas fa-file me-2"></i>
+                                                  <div class="flex-grow-1">
+                                                      <div class="fw-bold">{{ $attachment['name'] }}</div>
+                                                      <div class="small text-muted">{{ $attachment['size'] }}</div>
+                                                  </div>
+                                                  <button type="button"
+                                                          class="btn btn-link text-danger"
+                                                          wire:click="removeAttachment({{ $index }})">
+                                                      <i class="fas fa-times"></i>
+                                                  </button>
+                                              </div>
+                                          @endforeach
+                                      </div>
+                                  @endif
+
+
                               </div>
                           </div>
                       </div>
@@ -260,8 +291,8 @@
 
                           <button type="button"
                                   class="btn btn-primary d-flex align-items-center"
-                                  wire:click="nextStep"
-                                  @if(!$confirmed) disabled @endif>
+                                  wire:click="save"
+                                  >
                               Confirmar e Enviar
                               <i data-feather="check" class="ms-2"></i>
                           </button>

@@ -4,9 +4,16 @@ namespace App\Livewire\Report;
 
 use Livewire\Component;
 use App\Models\ReportType;
+use Illuminate\Support\Facades\DB;
+use App\Livewire\Report\Traits\WithValidation;
+use App\Livewire\Report\Traits\WithAttachments;
+use App\Services\Report\ProtocolGenerator;
+use App\Services\Report\ReportService;
 
 class Form extends Component
 {
+
+  use WithValidation, WithAttachments;
 
   public $is_anonymous = 'true';
   public $reported_by;
@@ -18,14 +25,15 @@ class Form extends Component
   public $step = 1;
   public $custom_fields = [];
   public $custom_fields_values = [];
-  public $confirmed = false;
+  public $confirmed = true;
+  public $typeId;
 
   public function mount()
   {
-    $typeId = request()->route('type');
+    $this->typeId = request()->route('type');
 
-    if ($typeId) {
-      $type = ReportType::find($typeId);
+    if ($this->typeId) {
+      $type = ReportType::find($this->typeId);
       $this->custom_fields = $type->customFields;
     }
   }
@@ -38,6 +46,8 @@ class Form extends Component
 
   public function  nextStep()
   {
+
+    $this->validateStep($this->step);
     $this->step++;
   }
 
@@ -46,26 +56,30 @@ class Form extends Component
     $this->step--;
   }
 
-  public function submit()
+  public function save()
   {
-    $this->validate([
-      'details' => 'required',
-      'location' => 'required',
-      'date' => 'required',
-    ]);
 
-    $data = [
-      'reported_by' => $this->reported_by,
-      'contact' => $this->contact,
-      'email' => $this->email,
-      'details' => $this->details,
-      'location' => $this->location,
-      'is_anonymous' => $this->is_anonymous,
-      'custom_fields' => $this->custom_fields_values,
-    ];
 
-    // Save to database
-    $this->confirmed = true;
+
+        $protocol = new ProtocolGenerator();
+        $service = new ReportService($protocol);
+
+
+        $report = $service->create([
+            'report_type_id' => $this->typeId,
+            'is_anonymous' => $this->is_anonymous === 'true',
+            'reported_by' => $this->reported_by,
+            'email' => $this->email,
+            'contact' => $this->contact,
+            'details' => $this->details,
+            'custom_fields_values' => $this->custom_fields_values,
+        ]);
+
+        // Salva os anexos
+        $this->saveAttachments($report);
+
+
+
   }
 
 }

@@ -2,7 +2,7 @@
 
 namespace App\Services\Report;
 
-use App\Models\Reports as Report;
+use App\Models\Report as Report;
 use App\Models\CustomField;
 use Illuminate\Support\Facades\DB;
 use App\Services\Report\ProtocolGenerator;
@@ -29,6 +29,7 @@ class ReportService
             $protocol = $this->protocolGenerator->generateUnique();
 
             $report = Report::create([
+                'report_type_id' => $data['report_type_id'],
                 'protocol' => $protocol,
                 'is_anonymous' => $data['is_anonymous'],
                 'reported_by' => $data['reported_by'],
@@ -44,7 +45,7 @@ class ReportService
             }
 
             DB::commit();
-            event(new ReportCreated($report));
+            // event(new ReportCreated($report));
 
             return $report;
         } catch (\Exception $e) {
@@ -55,11 +56,15 @@ class ReportService
 
     protected function saveCustomFieldValues(Report $report, array $values)
     {
-        $formattedValues = [];
-        foreach ($values as $fieldId => $value) {
-            $formattedValues[$fieldId] = ['value' => $value];
-        }
 
-        $report->customFields()->sync($formattedValues);
+        $report->customFieldValues()->createMany(
+            collect($values)->map(function ($value, $fieldId) {
+                return [
+                    'custom_field_id' => $fieldId,
+                    'value' => $value,
+                ];
+            })->toArray()
+        );
+
     }
 }

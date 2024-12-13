@@ -38,3 +38,46 @@ $configData['style'] : '') .'.scss',
 @yield('page-style')
 
 @livewireStyles
+
+
+
+
+<!-- Custom Styles -->
+<style>
+
+.upload-area {
+    background-color: #f8f9fa;
+    border: 2px dashed #dee2e6;
+    transition: all 0.3s ease;
+}
+
+.upload-area:hover {
+    border-color: #6c757d;
+    background-color: #fff;
+}
+
+.upload-area.drag-over {
+    border-color: #0d6efd;
+    background-color: #e9ecef;
+}
+
+.attached-file {
+    background-color: #fff;
+    transition: all 0.2s ease;
+}
+
+.attached-file:hover {
+    background-color: #f8f9fa;
+}
+
+.attached-file .btn-link {
+    padding: 0;
+    font-size: 1.1rem;
+}
+
+.attached-file .btn-link:hover {
+    color: #dc3545;
+    text-decoration: none;
+}
+
+</style>

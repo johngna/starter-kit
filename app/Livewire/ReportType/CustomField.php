@@ -66,7 +66,7 @@ class CustomField extends Component
       $this->customs[] = $this->custom;
     }
 
-    $this->custom = ['order' => 1, 'type' => 'text', 'is_required' => 0];
+    $this->custom = ['order' => 1, 'type' => 'text', 'is_required' => 0, 'is_active' => 1];
   }
 
   public function editField($index)
@@ -87,4 +87,8 @@ class CustomField extends Component
     unset($this->customs[$index]);
     $this->customs = array_values($this->customs);
   }
+
+
+
+
 }

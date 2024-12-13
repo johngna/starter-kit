@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use App\Models\Reports as Report;
+use App\Models\Report as Report;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 

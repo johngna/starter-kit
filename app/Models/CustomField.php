@@ -12,4 +12,11 @@ class CustomField extends Model
 
   protected $table = 'custom_fields';
   protected $guarded = [];
+
+  protected $casts = [
+    'is_required' => 'boolean',
+    'is_active' => 'boolean',
+  ];
+
+
 }

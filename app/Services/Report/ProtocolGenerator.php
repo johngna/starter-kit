@@ -3,7 +3,7 @@
 namespace App\Services\Report;
 
 use Carbon\Carbon;
-use App\Models\Reports;
+use App\Models\Report;
 
 class ProtocolGenerator
 {
@@ -25,6 +25,6 @@ class ProtocolGenerator
 
     private function protocolExists(string $protocol): bool
     {
-        return Reports::where('protocol', $protocol)->exists();
+        return Report::where('protocol', $protocol)->exists();
     }
 }

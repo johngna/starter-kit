@@ -29,6 +29,7 @@
               </div>
               <div class="mb-6 col-lg-6 col-xl-2 col-12 mb-0">
                 <x-input label="Opções" name="custom[options]" wire:model.live="custom.options" />
+
               </div>
               <div class="mb-6 col-lg-6 col-xl-1 col-12 mb-0">
                 <x-input type="number" label="Ordem" name="custom[order]" wire:model.live="custom.order" />
