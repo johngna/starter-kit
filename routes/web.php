@@ -8,6 +8,7 @@ use App\Http\Controllers\pages\MiscError;
 use App\Http\Controllers\ACL\RoleController;
 use App\Http\Controllers\ACL\UserRoleController;
 use App\Http\Controllers\ACL\PermissionController;
+use App\Http\Controllers\Report\TrackingController;
 use App\Livewire\ReportType\Form as ReportTypeForm;
 use App\Livewire\ReportType\View as ReportTypeView;
 use App\Http\Controllers\authentications\LoginBasic;
@@ -49,3 +50,6 @@ Route::middleware(['auth'])->prefix('acl')->name('acl.')->group(function () {
   // User Roles
   Route::get('/user-roles', [UserRoleController::class, 'index'])->name('user-roles.index');
 });
+
+
+Route::get('/consultar-protocolo', [TrackingController::class, 'index'])->name('report.tracking');

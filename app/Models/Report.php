@@ -18,4 +18,28 @@ class Report extends Model
     {
         return $this->hasMany(CustomFieldValue::class);
     }
+
+
+
+    public function getStatusDescriptionAttribute(): string
+    {
+        return match ($this->status) {
+            'pending' => 'Em análise inicial',
+            'in_progress' => 'Em andamento',
+            'completed' => 'Concluída',
+            'archived' => 'Arquivada',
+            default => 'Status desconhecido'
+        };
+    }
+
+    public function getStatusColorAttribute(): string
+    {
+        return match ($this->status) {
+            'pending' => 'warning',
+            'in_progress' => 'info',
+            'completed' => 'success',
+            'archived' => 'secondary',
+            default => 'primary'
+        };
+    }
 }

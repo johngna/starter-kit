@@ -80,4 +80,63 @@ $configData['style'] : '') .'.scss',
     text-decoration: none;
 }
 
+
+/* Timeline styles */
+.timeline {
+    position: relative;
+    padding-left: 3rem;
+}
+
+.timeline-items {
+    border-left: 2px solid #e9ecef;
+}
+
+.timeline-item {
+    position: relative;
+    padding-bottom: 1.5rem;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -0.9375rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid #6c757d;
+}
+
+.timeline-content {
+    padding-left: 1.25rem;
+}
+
+.timeline-date {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+}
+
+.timeline-title {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.timeline-text {
+    color: #6c757d;
+    font-size: 0.9375rem;
+}
+
+/* Status badge */
+.status-badge .badge {
+    font-size: 0.9375rem;
+    padding: 0.5rem 1rem;
+}
+
+/* Info items */
+.info-item {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 0.375rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
 </style>
